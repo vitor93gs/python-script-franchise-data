@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv('your_file.csv', delimiter='\t')
@@ -22,10 +23,16 @@ VALUES """)
             'xpd' : row.to_dict()['CIDADE,ESTADO,JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ,ANUAL']
         }
         query = sql_query_template.format(**data)
+        
+        new_string_with_double_quotes = query.replace("'","''")
+        new_string = re.sub(r'\(([^,]+),([^,]+)', r"('\1','\2'", new_string_with_double_quotes)
+            
         # Write the query to the file
         if index == df.size-1:
-            f.write(sql_query_template_final.format(**data))
+            final_string_with_double_quotes = sql_query_template_final.format(**data).replace("'","''")
+            final_string = re.sub(r'\(([^,]+),([^,]+)', r"('\1','\2'", final_string_with_double_quotes)
+            f.write(final_string)
         else:
-            f.write(query)
+            f.write(new_string)
 
 print("SQL queries generated and saved to insert_queries.sql")
