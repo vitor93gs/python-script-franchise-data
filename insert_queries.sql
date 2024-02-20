@@ -1,4 +1,4 @@
-INSERT INTO Productivity (cidade, estado, jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez, anual)
+INSERT INTO Productivity (cidade, estado, janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro, anual)
 VALUES 
 ('ACRELÂNDIA','AC',4521,4522,4247,4371,3960,4084,4284,4807,4915,5008,4885,4574,4515),
 ('ASSIS BRASIL','AC',4678,4661,4231,4532,3917,4026,4283,4947,5136,5092,5102,4771,4615),
